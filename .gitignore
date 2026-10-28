@@ -1,0 +1,43 @@
+# Credenciais e configurações privadas
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*
+*secrets*
+
+# Bancos de dados
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Tokens e sessões
+*tokens.json
+*session.json
+*cookies.txt
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# Dependências e caches
+node_modules/
+__pycache__/
+*.pyc
+
+# Configurações locais
+.vscode/
+.idea/
+
+# Código-fonte completo do laboratório
+# Preservado localmente; publicar somente trechos e patches
+findings/SQLI-001-authentication-bypass/remediation/login.vulnerable.ts
+findings/SQLI-001-authentication-bypass/remediation/login.fixed.ts
+findings/SQLI-001-authentication-bypass/remediation/login.fixed.js
