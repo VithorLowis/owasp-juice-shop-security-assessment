@@ -1,3 +1,19 @@
+# SQLI-002 — Investigação concluída
+
+**Status:** Confirmada, corrigida e retestada.
+
+Este documento preserva o registro histórico da investigação inicial. A hipótese foi posteriormente confirmada por testes controlados de SQL Injection booleana e UNION-based.
+
+**Relatórios finais:**
+- [Português](../findings/SQLI-002-product-search/PT-BR.md)
+- [English](../findings/SQLI-002-product-search/EN-US.md)
+
+**Patch validado:** [SQLI-002-security.patch](../findings/SQLI-002-product-search/remediation/SQLI-002-security.patch)
+
+---
+
+## Registro original da investigação
+
 # SQLI-002 — Possible SQL Injection in Product Search
 
 ## PT-BR — Investigação pendente

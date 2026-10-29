@@ -77,15 +77,52 @@ Esses resultados não garantem a ausência de todas as possíveis variantes de S
 
 ---
 
-### SQLI-002 — Possível SQL Injection na Pesquisa de Produtos
+### SQLI-002 — SQL Injection na Pesquisa de Produtos
 
-Durante a análise do código-fonte, foi identificada uma consulta SQL com interpolação potencialmente insegura.
+**Classificação:** CWE-89 — SQL Injection
 
-**Status:** Suspeita técnica — investigação pendente.
+**Endpoint:** `GET /rest/products/search?q=...`
 
-A vulnerabilidade ainda não foi comprovada por exploração.
+**Severidade:** Crítica (preliminar; CVSS não calculado)
 
-[Consultar registro da investigação](notes/SQLI-002-pending-investigation.md)
+**Status:** Exploração confirmada, correção implementada e retestes aprovados.
+
+#### Impacto demonstrado
+
+- Manipulação de consultas SQL por condições booleanas.
+- Execução de consultas UNION SELECT.
+- Enumeração de 22 tabelas do SQLite.
+- Identificação de 24 registros na tabela Users.
+- Recuperação controlada de registros e hashes de senha.
+
+#### Correção implementada
+
+Substituição da interpolação SQL por parâmetros vinculados (`bind`).
+
+#### Resultados dos retestes
+
+| Teste | Resultado |
+|---|---|
+| Pesquisa legítima | HTTP 200 — 3 produtos |
+| SQL Injection booleana | HTTP 200 — 0 produtos |
+| SQL Injection UNION | HTTP 200 — 0 produtos |
+| Tentativa de acesso à tabela Users | HTTP 200 — 0 produtos |
+
+Os vetores testados foram bloqueados sem comprometer a pesquisa legítima.
+
+**Documentação completa:**
+
+- [Relatório técnico — Português](findings/SQLI-002-product-search/PT-BR.md)
+- [Technical Report — English](findings/SQLI-002-product-search/EN-US.md)
+- [Patch de segurança](findings/SQLI-002-product-search/remediation/SQLI-002-security.patch)
+
+### CRYPTO-001 — Armazenamento Inseguro de Senhas (MD5)
+
+**Status:** Vulnerabilidade confirmada; correção pendente.
+
+Durante a investigação SQLI-002, foi identificado o uso de MD5 sem salt individual para armazenamento de senhas.
+
+[Consultar documentação técnica](notes/CRYPTO-001-weak-password-hashing.md)
 
 ---
 
